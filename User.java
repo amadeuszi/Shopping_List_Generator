@@ -7,13 +7,14 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 public class User {
-	private ArrayList<Integer> chosenRecipies;
+	public ArrayList<Integer> chosenRecipies;
 	public Map<Integer, Double> shoppingList;
 	public Map<Integer, Double> neededIngredients;
 	public Map<Integer, Double> myShelf;
 	public ArrayList<Product> productList;
 	public Map<String, Integer> translatorIngredient;
 	public ObservableList<Recipie> recipies;
+	public ObservableList<Recipie> recipiesAdded;
 	
 	User() {
 		chosenRecipies = new ArrayList<Integer>();
@@ -22,6 +23,7 @@ public class User {
 		myShelf = new HashMap<Integer, Double>();
 		productList = new ArrayList<>();
 		recipies = FXCollections.observableArrayList();
+		recipiesAdded = FXCollections.observableArrayList();
 	}
 	void addRecipie(int recipie) {
 		chosenRecipies.add(recipie);
@@ -48,14 +50,17 @@ public class User {
 		}
 	}
 	
-	void showProductList() {
-		System.out.println("\nProduct List: ");
+	String showProductList() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("Product List: \n");
 		double sum = 0;
 		for (Product product : productList) {
-			System.out.println(product);
+			builder.append(product + "\n");
 			sum += product.priceAll;
 		}
-		System.out.println("\n---------------------------\n" +
+		builder.append("\n---------------------------\n" +
 					"Price for all the products: " + sum);
+		return builder.toString();
 	}
 }

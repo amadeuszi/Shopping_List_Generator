@@ -31,7 +31,7 @@ public class Operations {
 			e.printStackTrace();
 		}
 	}
-	public void showRecipies() {
+	public void prepareRecipies() {
 		try {
 			String sql = "SELECT * from RECIPIE";
 			ResultSet recipies = null;
