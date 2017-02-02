@@ -3,6 +3,9 @@ package application;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class User {
 	private ArrayList<Integer> chosenRecipies;
 	public Map<Integer, Double> shoppingList;
@@ -10,6 +13,7 @@ public class User {
 	public Map<Integer, Double> myShelf;
 	public ArrayList<Product> productList;
 	public Map<String, Integer> translatorIngredient;
+	public ObservableList<Recipie> recipies;
 	
 	User() {
 		chosenRecipies = new ArrayList<Integer>();
@@ -17,6 +21,7 @@ public class User {
 		neededIngredients = new HashMap<Integer, Double>();
 		myShelf = new HashMap<Integer, Double>();
 		productList = new ArrayList<>();
+		recipies = FXCollections.observableArrayList();
 	}
 	void addRecipie(int recipie) {
 		chosenRecipies.add(recipie);

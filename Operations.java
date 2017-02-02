@@ -39,25 +39,24 @@ public class Operations {
 			recipies = stmt1.executeQuery(sql);
 		
 			while (recipies.next()) {
-				System.out.println("---------------------------");
 				int id = recipies.getInt(1);
 				String title = recipies.getString(2);
-				String description = recipies.getString(3);
-				System.out.println(id + ". " + title);
-				System.out.println(description);
-				System.out.println("Ingredients: ");
+				StringBuilder description = new StringBuilder();
+				description.append(id + ". " + title + "\n");
+				description.append(recipies.getString(3) + "\n");
+				description.append("Ingredients: \n");
 				sql = "SELECT * FROM RECIPIE_INGREDIENT JOIN INGREDIENT ON id_ingredient = id WHERE id_recipie = " + id;
-				//" WHERE id_recipie = " + id;
 				Statement stmt2 = con.createStatement();
 				ResultSet ingredients = stmt2.executeQuery(sql);
 				while(ingredients.next()) {
 					double quantity = ingredients.getDouble("quantity");
 					String ingredient = ingredients.getString("title");
 					String kind = ingredients.getString("kind_of_quantity");
-					System.out.println(ingredient + " - " + quantity + " " + kind);
+					description.append(ingredient + " - " + quantity + " " + kind);
 					
 				}
-				System.out.println("---------------------------");
+				Recipie rec = new Recipie(id, title, description.toString());
+				user.recipies.add(rec);
 			} 
 			
 			

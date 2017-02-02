@@ -12,12 +12,13 @@ import javafx.scene.control.ComboBox;
 public class MainController implements Initializable {
 	
 	@FXML
-	public ComboBox<String> combobox;
+	public ComboBox<Recipie> combobox;
 	
-	ObservableList<String> list = FXCollections.observableArrayList("Mark", "Amadeusz");
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		combobox.setItems(list);
+		Operations operations = new Operations();
+		operations.showRecipies();
+		combobox.setItems(operations.user.recipies);
 	}
 
 }
