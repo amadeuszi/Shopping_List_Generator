@@ -55,7 +55,6 @@ public class MainController implements Initializable {
 	}
 	
 	public void generateAction(Event event) {
-		operations.updateTranslator();
 		operations.updateMyShelf();
 		operations.createShoppingList();
 		operations.convertFromShoppingListToProductList();
